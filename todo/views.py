@@ -50,3 +50,9 @@ def todo_get_del_upd(request,pk) :
             return Response(serializer.data, status = status.HTTP_202_ACCEPTED)
         else : 
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE' :
+        todo.delete()
+        return Response({
+            'message' : 'Task Deleted Succesfully!'
+        })

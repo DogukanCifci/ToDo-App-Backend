@@ -9,5 +9,5 @@ from .views import (
 urlpatterns = [
     path('', home),
     path('todos/',todo_list_created),
-    path('todos/<int:pk>', todo_get_del_upd)
+    path('todos/<int:pk>/', todo_get_del_upd)
 ]
