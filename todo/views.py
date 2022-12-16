@@ -9,6 +9,9 @@ from django.shortcuts import get_object_or_404
 from .models import Todo
 from .serializers import TodoSerializer
 
+
+
+
 def home(request) : 
     return HttpResponse('<center><h1 style="background-color:powderblue;">Welcome to ApiTodo</h1></center>')
 
@@ -56,3 +59,29 @@ def todo_get_del_upd(request,pk) :
         return Response({
             'message' : 'Task Deleted Succesfully!'
         })
+
+
+
+#ANOTHER METHODS IMPORTS
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+
+#ANOTHER METHOD
+
+class Todos(ListCreateAPIView) :
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+
+class TodosDetails(RetrieveUpdateDestroyAPIView) :
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+
+
+#LAST ANOTHER METHOD 
+#IMPORT
+from rest_framework.viewsets import ModelViewSet
+
+class TodoMVS(ModelViewSet) :
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
