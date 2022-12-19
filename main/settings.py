@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     #Third party apps
     "rest_framework",
+     "corsheaders",
     #My Apps
     'todo',
 ]
@@ -46,11 +47,13 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    
 ]
 
 ROOT_URLCONF = "main.urls"
@@ -119,3 +122,30 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+#My Things
+#Özel urllere erisim izni vermek icin kullaniliyor.
+
+CORS_ALLOWED_ORIGINS = [
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:3000", #React'ta localhost:3000 ile calisitigmiz icin bu linke izin versek yeterli. Daha sonra netlify veya github ile calistirip oranin linkinede izin vermek istersek onun linkini'de buraya ekleyebiliriz.
+    #Veya allta CORS_ALLOW_ALL_ORIGINS = True diyerek her seye izin verebiliriz.
+    "http://127.0.0.1:9000",
+] 
+
+
+#Public API icin :
+#Nereden baglanirsan baglan hepsine izin ve cevap verir.
+CORS_ALLOW_ALL_ORIGINS = True
+
+
+#Izin verilen islemler :
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
