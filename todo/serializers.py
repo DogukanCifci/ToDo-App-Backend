@@ -2,6 +2,10 @@ from rest_framework import serializers
 
 from .models import Todo
 
+# class TodoSerializers(serializers.ModelSerializer):
+#     todo_detail = serializers.HyperlinkedIdentityField(
+#         view_name='todo-detail',
+#     )
 
 class TodoSerializer(serializers.ModelSerializer) :
     class Meta : 
@@ -10,6 +14,7 @@ class TodoSerializer(serializers.ModelSerializer) :
         fields = (
             'id',
             'task',
+            # 'todo_detail',  
             'description',
             'priority',
             'is_done',
